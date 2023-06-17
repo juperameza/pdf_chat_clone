@@ -1,0 +1,8 @@
+<%if post.file.attached?%>
+    <%if post.file.image?%>
+        <%= image_tag post.file %>
+    <%else%>
+        <%= link_to post.file.filename, rails_blob_path(post.file, disposition: "attachment") %>
+        <%= @text%>
+    <%end%>
+<%end%>
