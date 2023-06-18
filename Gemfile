@@ -77,3 +77,7 @@ gem "open-uri", "~> 0.3.0"
 
 gem "pdfinfo", "~> 1.4"
 
+
+gem "rest-client", "~> 2.1"
+
+gem "ruby-openai"

@@ -1,8 +1,10 @@
-<%if post.file.attached?%>
-    <%if post.file.image?%>
-        <%= image_tag post.file %>
-    <%else%>
-        <%= link_to post.file.filename, rails_blob_path(post.file, disposition: "attachment") %>
+<% if post.file.attached? %>
+    <% if post.file.image?%>
+        <%= imag_tag(post.file)%>
+    <% else %>
+        <%= link_to post.file.filename, url_for(post.file) %>
         <%= @text%>
-    <%end%>
-<%end%>
+        <h1> Result from openai</h1>
+        <%= @result%>
+    <% end %>
+<% end %>

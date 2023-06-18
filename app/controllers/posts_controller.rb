@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def show
     file = ActiveStorage::Blob.service.path_for(@post.file.key)
     @text = extract_text_from_pdf(file)
+    @result = send_text_to_chatbot_api(@text)
   end
 
   # GET /posts/new
