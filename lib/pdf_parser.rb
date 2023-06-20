@@ -15,23 +15,22 @@ def extract_text_from_pdf(file_path)
   text
 end
 
-def send_text_to_chatbot_api(text)
+def send_text_to_chatbot_api(text, input)
+  route ="#{Rails.root}/db/schema.rb"
   client = OpenAI::Client.new
   prompt = [
     {
-    "role": "system",
-    "content": "You know this pdf #{text}}"
-    },
-    {
     "role": "user",
-    "content": "Give me a sumarry about that pdf"
-  }]
+    "content": "given a database schema like below : \n #{File.read(route)} \n 
+    i want to #{input}. Only give me the ruby on rails query, do not explain your work."
+  }
+]
 
   response = client.chat(
     parameters: {
       model: "gpt-3.5-turbo",
       messages: prompt,
-      temperature: 0.7
+      temperature: 1
     }
   )
   response.dig("choices", 0, "message", "content")
